@@ -9,4 +9,10 @@ class Contact(models.Model):
 #        return self.question
 
     def __str__(self):
-        return ' '.join([self.first_name, self.last_name,])
+        return ' '.join([self.last_name, ', ', self.first_name,])
+    
+    def get_fields_and_values(self):
+        return [(field, field.value_to_string(self)) for field in Contact._meta.fields]
+    
+    def query_fields_and_values(self):
+        return [(field, field.value_to_string(self)) for field in Contact._meta.fields if self.last_name == 'chang']

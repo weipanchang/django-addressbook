@@ -2,14 +2,14 @@
 
 <html lang="en">
 <head>
-    <title>List Contacts</title>
+    <title>Query Contacts</title>
 </head>
 <body>
     <h1>Contacts</h1>
     <ul>
         {% for contact in object_list %}
     <tr>
-        {% for fld, val in contact.get_fields_and_values %}
+        {% for fld, val in contact.query_fields_and_values %}
             <td>{{ fld.name }} : {{ val }}</td>
         {% endfor %}</br>
     </tr>
@@ -17,6 +17,6 @@
     </ul>
 </body>
 
-<a href="{% url "contacts-new" %}">add new to list</a><br>
-<a href="{% url "contacts-query" %}">query list</a>
+<a href="{% url "contacts-list" %}">back to list</a>
 </html>
+
