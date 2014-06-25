@@ -18,6 +18,7 @@ urlpatterns = patterns('',
         name='contacts-list',),
     url(r'^new$', contacts.views.CreateContactView.as_view(),
         name='contacts-new',),
+
     url(r'^query$', contacts.views.CreateQueryView.as_view(),
         name='contacts-query',),
     #url(r'^new$', contacts.views.QueryContactView.as_view(),
