@@ -1,0 +1,15 @@
+
+{# coding: utf8 #}
+
+<div id="Contact_confirm_delete_header" class="model-confirm-delete-header Contact-confirm-delete-header">
+Are you sure to delete {{ object }}?
+</div>
+
+<form action="." method="post" name="Contact_delete" class="model-confirm-delete-form Contact-confirm-delete-form">
+    {% csrf_token %}
+    {{ form }}
+    <div class="model-confirm-delete-buttons-bar Contact-confirm-delete-buttons-bar">
+        <input type="submit" value="Ok" class="model-confirm-delete-submitContact-confirm-delete-submit"/>
+        <a href="{% url "contacts:contact:list" page="1" %}" class="model-confirm-delete-form-cancel Contact-confirm-delete-form-cancel">Cancel </a>
+    </div>
+</form>

@@ -1,0 +1,33 @@
+
+
+
+
+{# coding: utf8 #}
+{% if object %}
+
+<div id="Contact_form_header" class="object-form-header Contact-form-header">
+
+
+
+Editing {{object}}
+</div>
+{% else %}
+Create new {{modelname}}
+{% endif %}
+
+
+
+<form action="." method="post" name="Contact_form" class="model-form Contact-form">
+    {% csrf_token %}
+    <table class="model-form-table Contact-form-table">
+        <tbody class="model-form-tbody Contact-form-tbody">
+            {{ form.as_table }}
+            <tr class="model-form-table-tr Contact-form-table-tr">
+                <td colspan="2" class="model-form-table-tr-td Contact-form-table-tr-td">
+                    <input type="submit" value="Ok" class="model-form-submit Contact-form-submit"/>
+                    <a href="{% url "contacts:contact:list" page="1" %}" class="model-form-cancel Contact-form-cancel">Cancel </a>
+                </td>
+            </tr>
+       </tbody>
+  </table> 
+</form>

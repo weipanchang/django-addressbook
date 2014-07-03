@@ -1,0 +1,58 @@
+
+
+
+{# coding: utf8 #}
+
+
+
+{% if perms.contacts.add_contact %}
+    <a href="{% url "contacts:contact:create"  %}" class="model-new Contact-new">New Contact</a> 
+ {% endif %} 
+
+ {% if object_list %} 
+    <table class="model-list-table Contact-list-table">
+    <thead class="model-list-table-thead Contact-list-table-thead">
+        <tr class="model-list-table-thead-tr Contact-list-table-thead-tr">
+            <th class="model-list-table-tr-th-object Contact-list-table-tr-th-object">Contact </th> 
+            <th class="model-list-table-tr-th-actions Contact-list-table-tr-th-actions"> Actions </th> 
+        </tr>
+    </thead>
+    <tbody class="model-list-table-tbody Contact-list-table-tbody">
+     {% for obj in object_list %} 
+        <tr class="model-list-table-tr Contact-list-table-tr">
+            <td class="model-list-table-tr-td-object Contact-list-table-tr-td-object">{{obj}}</td>
+            <td class="model-list-table-tr-td-actions Contact-list-table-tr-td-actions">
+
+                {% if perms.contacts.update_contact %}
+                <a href="{% url "contacts:contact:update" obj.pk %}" class="model-list-table-tr-td-actions-edit Contact-list-table-tr-td-actions-edit">edit</a>
+                {%  endif %}
+
+                {% if perms.contacts.delete_contact %}
+                <a href="{% url "contacts:contact:delete" obj.pk %}" class="model-list-table-tr-td-actions-delete Contact-list-table-tr-td-actions-delete">delete</a>
+                {%  endif %}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+    {% if is_paginated %}
+        <div class="model-list-pagination Contact-list-pagination">
+            <span class="model-list-page-links">
+                {% if page_obj.has_previous %}
+                    <a href="{% url "contacts:contact:list" page="" %}" class="model-list-page-links-previous Contact-list-page-links-next-previous">Previous</a>
+                {% endif %}
+                
+                    <span class="page-current">
+                        Page {{page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                    </span>
+                
+                {% if page_obj.has_next %}
+                    <a href="{% url "contacts:contact:list" page_obj.next_page_number %}" class="model-list-page-links-next Contact-list-page-links-next">Next</a>
+                {% endif %}
+            </span>
+        </div>
+        {% endif %}
+{% else %}
+    <p id="contact_list_not_found_msg" class="model-list-not-found-msg contact-list-not-found-msg"> No contacts found. </p>
+{% endif %}
+

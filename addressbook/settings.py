@@ -13,7 +13,9 @@ import os
 from os.path import join
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 TEMPLATE_DIRS = (
-    join(BASE_DIR,  'templates'),
+#    join(BASE_DIR,  'templates'),
+#    join(BASE_DIR,'contacts/'  'templates'),
+   '/root//addressbook/contacts/templates'
 )
 
 
@@ -41,6 +43,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'djangocrudgenerator',
     'contacts'
 )
 

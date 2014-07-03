@@ -1,18 +1,39 @@
-from django.shortcuts import render
+# -*- coding: utf-8 -*-
+
+#crudgenerator auto-generated code.
+#crudgenetaror date: 3rd July 2014 02:22
+
+
 from django.core.urlresolvers import reverse
-from django.views.generic import CreateView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from models import Contact
 
-from django.views.generic import ListView
-from contacts.models import Contact
-class ListContactView(ListView):
-    model = Contact
-    template_name = 'contact_list.html'
 
-class CreateContactView(CreateView):
+__all__ = ('ContactListView', 'ContactUpdateView',
+           'ContactCreateView', 'ContactDeleteView')
+
+
+class ContactListView(ListView):
     model = Contact
-    template_name = 'edit_contact.html'
-    
+    paginate_by = 20
+
+
+class ContactDeleteView(DeleteView):
+    model = Contact
+
     def get_success_url(self):
-        return reverse('contacts-list')
+        return reverse("contacts:contact:list", args=(1,))
 
-# Create your views here.
+
+class ContactCreateView(CreateView):
+    model = Contact
+
+    def get_success_url(self):
+        return reverse("contacts:contact:list", args=(1,))
+
+
+class ContactUpdateView(UpdateView):
+    model = Contact
+
+    def get_success_url(self):
+        return reverse("contacts:contact:list", args=(1,))
